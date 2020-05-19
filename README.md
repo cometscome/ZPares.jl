@@ -4,7 +4,11 @@
 [![Codecov](https://codecov.io/gh/cometscome/ZPares.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/cometscome/ZPares.jl)
 [![Coveralls](https://coveralls.io/repos/github/cometscome/ZPares.jl/badge.svg?branch=master)](https://coveralls.io/github/cometscome/ZPares.jl?branch=master)
 
-Julia wrapper for [z-Pares](https://zpares.cs.tsukuba.ac.jp)
+Julia wrapper for [z-Pares](https://zpares.cs.tsukuba.ac.jp).
+
+I confirmed that this works on MacOS 10.14.6.
+
+Julia 1.4 or higher is needed. 
 
 ```
 z-Pares: Parallel Eigenvalue Solver
