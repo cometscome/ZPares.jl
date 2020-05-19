@@ -3,6 +3,9 @@ module ZPares
     using LinearAlgebra
     using LinearMaps
 
+    const currentdir = pwd()
+    const insdir = homedir()*"/.julia/packages/ZPares"
+
 
     function eigensolve(A,emin,emax;L=8,N=32,M=16,Lmax=32,ishermitian=false)
         function mulC(z)
@@ -36,6 +39,7 @@ module ZPares
 
 
         #initialize_zpares_prm(L,N,M,Lmax)
+        cd(insdir)
         ccall((:initialize_zpares_prm,"zpares_wrapper.so"),Nothing, 
             (
             Ref{Int64}, #L
@@ -43,6 +47,7 @@ module ZPares
             Ref{Int64}, #M
             Ref{Int64}), #LMAX
             L,N,M,Lmax)
+        
 
         tasks = zeros(Int32,7)
 
@@ -170,6 +175,7 @@ module ZPares
             println(i,"\t",eigval[i],"\t",res[i])
         end
 #        println(eigval[1:num_ev[1]])
+        cd(currentdir)
 
         return eigval[1:num_ev[1]],X[:,1:num_ev[1]],num_ev[1]
 
@@ -205,7 +211,7 @@ module ZPares
 
 
 
-
+        cd(insdir)
         #initialize_zpares_prm(L,N,M,Lmax)
         ccall((:initialize_zpares_prm,"./deps/zpares_wrapper.so"),Nothing, 
             (
@@ -321,6 +327,7 @@ module ZPares
             println(i,"\t",eigval[i],"\t",res[i])
         end
 #        println(eigval[1:num_ev[1]])
+        cd(currentdir)
 
         return eigval[1:num_ev[1]],X[:,1:num_ev[1]],num_ev[1]
 
