@@ -3,68 +3,6 @@ module ZPares
     using LinearAlgebra
     using LinearMaps
 
-    currentd = pwd()
-    pacpass = homedir()*"/.julia/packages/ZPares"
-    #pacpass = currentd
-
-    
-    #cd(homedir()*"/.julia/packages")
-
-
-    if isdir(pacpass*"/ZPares")
-    else
-        mkdir(pacpass*"/ZPares")
-    end
-    cd(pacpass*"/ZPares")
-    if isfile("zpares_wrapper.f90") == false
-        run(`pwd`)
-        run(`cp ../src/zpares_wrapper.f90 $pacpass`)
-    end
-    
-
-    const ZParesversion = "0.9.6a"
-    const ZParespath = "libzpares.a"
-    
-    const ZParestar = "zpares_"*ZParesversion*".tar.gz"
-    const ZParesurl = "https://zpares.cs.tsukuba.ac.jp/?download=242"
-
-
-
-    if isfile(ZParespath) == false
-        if isfile("zpares_"*ZParesversion) == false
-            if isfile(ZParestar) == false
-                println("Downloading zpares...")
-                download( ZParesurl,ZParestar)
-                println("done.")
-            end
-            run(`tar zxf  $ZParestar`) 
-        end
-        cd("zpares_"*ZParesversion)
-        run(`cp Makefile.inc/make.inc.gfortran.seq make.inc`)
-        run(`ls`)
-        #run(`pwd`)
-        run(`make`) 
-        run(`cp ./lib/libzpares.a $pacpass`)
-        run(`cp ./src/zpares.mod $pacpass`)
-#        run(`cp ./lib/libzpares.a ../../src/`)
-#        run(`cp ./src/zpares.mod ../../src/`)
-        #cd(pacpass)
-
-
-    end
-    cd(pacpass*"/ZPares")
-
-    if isfile("zpares_wrapper.so") == false
-        #cd(pacpass*"/src")
-        #run(`ls`)
-        run(`pwd`)
-        run(`gfortran -L./ -lzpares zpares_wrapper.f90 -o zpares_wrapper.so -shared -fPIC -llapack -lblas`)
-        run(`cp zpares_wrapper.so ../src/`)
-    end
-    cd(currentd)
-
-    wrapper = pacpass*"/zpares_wrapper.so"
-
 
     function eigensolve(A,emin,emax;L=8,N=32,M=16,Lmax=32,ishermitian=false)
         function mulC(z)
@@ -98,7 +36,7 @@ module ZPares
 
 
         #initialize_zpares_prm(L,N,M,Lmax)
-        ccall((:initialize_zpares_prm,"./ZPares/zpares_wrapper.so"),Nothing, 
+        ccall((:initialize_zpares_prm,"./deps/zpares_wrapper.so"),Nothing, 
             (
             Ref{Int64}, #L
             Ref{Int64}, #N
@@ -109,7 +47,7 @@ module ZPares
         tasks = zeros(Int32,7)
 
         #subroutine get_ZPARES_TASK(tasks) bind(c,name='get_ZPARES_TASK')
-        ccall((:get_ZPARES_TASK,"./ZPares/zpares_wrapper.so"),Nothing, 
+        ccall((:get_ZPARES_TASK,"./deps/zpares_wrapper.so"),Nothing, 
             (
             Ref{Int32},), #tasks
             tasks)
@@ -131,7 +69,7 @@ module ZPares
         cwork = zeros(ComplexF64,mat_size,Lmax)
 
         #integer function zpares_get_ncv_wrapper() bind(c, name = 'zpares_get_ncv_wrapper')
-        ncv = ccall((:zpares_get_ncv_wrapper,"./ZPares/zpares_wrapper.so"),Int64, 
+        ncv = ccall((:zpares_get_ncv_wrapper,"./deps/zpares_wrapper.so"),Int64, 
             ()
             )
         eigval = zeros(typeforeig,ncv)
@@ -155,7 +93,7 @@ module ZPares
                     subroutine wrapper_zpares_zrciheev &
                     (ncv,Lmax,mat_size, z, rwork, cwork, emin, emax, num_ev, eigval, X, res, info) bind(c,name = 'wrapper_zpares_zrciheev')
                     =#
-                ccall((:wrapper_zpares_zrciheev,"./ZPares/zpares_wrapper.so"),Nothing, 
+                ccall((:wrapper_zpares_zrciheev,"./deps/zpares_wrapper.so"),Nothing, 
                 (Ref{Int64},#ncv
                 Ref{Int64},#Lmax
                 Ref{Int64},#mat_size
@@ -176,7 +114,7 @@ module ZPares
                 ncv,Lmax,mat_size, z, rwork, cwork, emin, 
                     emax, num_ev, eigval, X, res, itask,xs,ws,nc,info)
             else
-                ccall((:wrapper_zpares_zrcigeev,"./ZPares/zpares_wrapper.so"),Nothing, 
+                ccall((:wrapper_zpares_zrcigeev,"./deps/zpares_wrapper.so"),Nothing, 
                 (Ref{Int64},#ncv
                 Ref{Int64},#Lmax
                 Ref{Int64},#mat_size
@@ -269,7 +207,7 @@ module ZPares
 
 
         #initialize_zpares_prm(L,N,M,Lmax)
-        ccall((:initialize_zpares_prm,"./ZPares/zpares_wrapper.so"),Nothing, 
+        ccall((:initialize_zpares_prm,"./deps/zpares_wrapper.so"),Nothing, 
             (
             Ref{Int64}, #L
             Ref{Int64}, #N
@@ -302,7 +240,7 @@ module ZPares
         cwork = zeros(ComplexF64,mat_size,Lmax)
 
         #integer function zpares_get_ncv_wrapper() bind(c, name = 'zpares_get_ncv_wrapper')
-        ncv = ccall((:zpares_get_ncv_wrapper,"./ZPares/zpares_wrapper.so"),Int64, 
+        ncv = ccall((:zpares_get_ncv_wrapper,"./deps/zpares_wrapper.so"),Int64, 
             ()
             )
         eigval = zeros(ComplexF64,ncv)
@@ -324,7 +262,7 @@ module ZPares
             subroutine wrapper_zpares_zrciheev &
             (ncv,Lmax,mat_size, z, rwork, cwork, emin, emax, num_ev, eigval, X, res, info) bind(c,name = 'wrapper_zpares_zrciheev')
             =#
-            ccall((:wrapper_zpares_zrcigegv,"./ZPares/zpares_wrapper.so"),Nothing, 
+            ccall((:wrapper_zpares_zrcigegv,"./deps/zpares_wrapper.so"),Nothing, 
             (Ref{Int64},#ncv
             Ref{Int64},#Lmax
             Ref{Int64},#mat_size
