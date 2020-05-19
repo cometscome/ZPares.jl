@@ -11,11 +11,11 @@ module ZPares
     #cd(homedir()*"/.julia/packages")
 
 
-    if isdir("ZPares")
+    if isdir(pacpass*"ZPares")
     else
-        mkdir("ZPares")
+        mkdir(pacpass*"ZPares")
     end
-    cd("ZPares")
+    cd(pacpass*"ZPares")
     if isfile("zpares_wrapper.f90") == false
         run(`pwd`)
         run(`cp ../src/zpares_wrapper.f90 $pacpass`)
@@ -52,7 +52,8 @@ module ZPares
 
 
     end
-    cd("ZPares")
+    cd(pacpass*"ZPares")
+    
     if isfile("zpares_wrapper.so") == false
         #cd(pacpass*"/src")
         #run(`ls`)
