@@ -34,5 +34,4 @@ if isfile("zpares_wrapper.so") == false
     #run(`ls`)
     run(`pwd`)
     run(`gfortran -L./ -lzpares zpares_wrapper.f90 -o zpares_wrapper.so -shared -fPIC -llapack -lblas`)
-    run(`cp zpares_wrapper.so ../src/`)
 end
