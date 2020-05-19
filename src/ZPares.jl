@@ -18,7 +18,7 @@ module ZPares
     cd("ZPares")
     if isfile("zpares_wrapper.f90") == false
         run(`pwd`)
-        run(`cp ../../src/zpares_wrapper.f90 ./`)
+        run(`cp ../src/zpares_wrapper.f90 ./`)
     end
     
 
