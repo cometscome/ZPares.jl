@@ -1,9 +1,0 @@
-FC = gfortran
-USE_MPI = 1
-FFLAG = -O2
-LFFLAG =
-BLAS =
-LAPACK = -framework vecLib
-USE_MUMPS = 0
-MUMPS_DIR =
-MUMPS_DEPEND_LIBS =
