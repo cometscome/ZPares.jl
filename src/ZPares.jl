@@ -15,7 +15,7 @@ module ZPares
     else
         mkdir(pacpass*"ZPares")
     end
-    cd(pacpass*"ZPares")
+    cd(pacpass*"/ZPares")
     if isfile("zpares_wrapper.f90") == false
         run(`pwd`)
         run(`cp ../src/zpares_wrapper.f90 $pacpass`)
@@ -52,8 +52,8 @@ module ZPares
 
 
     end
-    cd(pacpass*"ZPares")
-    
+    cd(pacpass*"/ZPares")
+
     if isfile("zpares_wrapper.so") == false
         #cd(pacpass*"/src")
         #run(`ls`)
