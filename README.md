@@ -6,6 +6,10 @@
 
 Julia wrapper for [z-Pares](https://zpares.cs.tsukuba.ac.jp).
 
+We can get eigenvalues with a given domain Gamma. Now Gamma is a elipsoidal shape. 
+```left`` means the left side and ```right``` means the right side. 
+If you use ```ishermitian = true```, left is the minimum eigenvalue in the domain Gamma and right is the maximum in this. 
+
 I confirmed that this works on MacOS 10.14.6.
 
 Julia 1.4 or higher is needed. 
