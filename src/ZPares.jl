@@ -5,10 +5,10 @@ module ZPares
 
     const currentdir = pwd()
     const insdir = homedir()*"/.julia/packages/ZPares"
-
+    export eigensolve
 
     function eigensolve(A,emin,emax;L=8,N=32,M=16,Lmax=32,ishermitian=false)
-        
+
         function mulC(z)
             function mulCy!(y::AbstractVector, x::AbstractVector)
                 @. y[:] = x[:]
