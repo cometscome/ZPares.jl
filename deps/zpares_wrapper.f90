@@ -27,7 +27,7 @@ module zpares_wrapper
         tasks(5) = ZPARES_TASK_MULT_A
         tasks(6) = ZPARES_TASK_NONE
         tasks(7) = ZPARES_TASK_MULT_B
-        write(*,*) tasks
+        !write(*,*) tasks
         return
     end
 

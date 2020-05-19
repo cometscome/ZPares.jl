@@ -34,12 +34,29 @@ function test()
     ρ = 0.2
     left = γ-ρ
     right = γ+ρ
-    @time ene2,X,num_ev = ZPares.eigensolve(sparse(A),left,right)
-    @time ene2,X,num_ev = ZPares.eigensolve(sparse(A),left,right,ishermitian=true)
+    @time eigval,X,num_ev,res = ZPares.eigensolve(sparse(A),left,right)
+    println("index:   eigenvalues : residuals")
+    for i=1:num_ev
+        println(i,"\t",eigval[i],"\t",res[i])
+    end
+
+
+    @time eigval,X,num_ev,res = ZPares.eigensolve(sparse(A),left,right,ishermitian=true)
+
+    println("index:   eigenvalues : residuals")
+    for i=1:num_ev
+        println(i,"\t",eigval[i],"\t",res[i])
+    end
     #exit()
    
-    @time ene2,X,num_ev = ZPares.eigensolve(sparse(A),sparse(B),left,right)
-    @time ene2,X,num_ev = ZPares.eigensolve(sparse(A),sparse(B),left,right,ishermitian=true)
+    @time eigval,X,num_ev = ZPares.eigensolve(sparse(A),sparse(B),left,right)
+    for i=1:num_ev
+        println(i,"\t",eigval[i],"\t",res[i])
+    end    
+    @time eigval,X,num_ev = ZPares.eigensolve(sparse(A),sparse(B),left,right,ishermitian=true)
+    for i=1:num_ev
+        println(i,"\t",eigval[i],"\t",res[i])
+    end 
     #e,v = eigen(A)
     #println(e)
 

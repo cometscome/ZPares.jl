@@ -8,6 +8,7 @@ module ZPares
 
 
     function eigensolve(A,emin,emax;L=8,N=32,M=16,Lmax=32,ishermitian=false)
+        
         function mulC(z)
             function mulCy!(y::AbstractVector, x::AbstractVector)
                 @. y[:] = x[:]
@@ -171,13 +172,9 @@ module ZPares
             
         end
 
-        for i=1:num_ev[1]
-            println(i,"\t",eigval[i],"\t",res[i])
-        end
-#        println(eigval[1:num_ev[1]])
         cd(currentdir)
 
-        return eigval[1:num_ev[1]],X[:,1:num_ev[1]],num_ev[1]
+        return eigval[1:num_ev[1]],X[:,1:num_ev[1]],num_ev[1],res[1:num_ev[1]]
 
     end
 
@@ -323,13 +320,11 @@ module ZPares
             
         end
 
-        for i=1:num_ev[1]
-            println(i,"\t",eigval[i],"\t",res[i])
-        end
+        
 #        println(eigval[1:num_ev[1]])
         cd(currentdir)
 
-        return eigval[1:num_ev[1]],X[:,1:num_ev[1]],num_ev[1]
+        return eigval[1:num_ev[1]],X[:,1:num_ev[1]],num_ev[1],res[1:num_ev[1]]
 
     end
 
