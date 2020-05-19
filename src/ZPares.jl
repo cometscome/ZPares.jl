@@ -48,10 +48,11 @@ module ZPares
         run(`cp ./src/zpares.mod $pacpass`)
 #        run(`cp ./lib/libzpares.a ../../src/`)
 #        run(`cp ./src/zpares.mod ../../src/`)
-        cd(pacpass)
+        #cd(pacpass)
 
 
     end
+    cd("ZPares")
     if isfile("zpares_wrapper.so") == false
         #cd(pacpass*"/src")
         #run(`ls`)
