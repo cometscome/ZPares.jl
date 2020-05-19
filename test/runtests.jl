@@ -49,11 +49,11 @@ function test()
     end
     #exit()
    
-    @time eigval,X,num_ev = ZPares.eigensolve(sparse(A),sparse(B),left,right)
+    @time eigval,X,num_ev,res = ZPares.eigensolve(sparse(A),sparse(B),left,right)
     for i=1:num_ev
         println(i,"\t",eigval[i],"\t",res[i])
     end    
-    @time eigval,X,num_ev = ZPares.eigensolve(sparse(A),sparse(B),left,right,ishermitian=true)
+    @time eigval,X,num_ev,res = ZPares.eigensolve(sparse(A),sparse(B),left,right,ishermitian=true)
     for i=1:num_ev
         println(i,"\t",eigval[i],"\t",res[i])
     end 
