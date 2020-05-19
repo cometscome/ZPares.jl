@@ -74,7 +74,7 @@ module ZPares
         cwork = zeros(ComplexF64,mat_size,Lmax)
 
         #integer function zpares_get_ncv_wrapper() bind(c, name = 'zpares_get_ncv_wrapper')
-        ncv = ccall((:zpares_get_ncv_wrapper,".zpares_wrapper.so"),Int64, 
+        ncv = ccall((:zpares_get_ncv_wrapper,"zpares_wrapper.so"),Int64, 
             ()
             )
         eigval = zeros(typeforeig,ncv)
