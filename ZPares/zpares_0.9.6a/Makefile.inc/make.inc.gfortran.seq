@@ -1,0 +1,9 @@
+FC = gfortran
+USE_MPI = 0
+FFLAG = -O2
+LFFLAG =
+BLAS = -lblas
+LAPACK = -llapack
+USE_MUMPS = 0
+MUMPS_DIR =
+MUMPS_DEPEND_LIBS =

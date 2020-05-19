@@ -1,0 +1,9 @@
+FC = mpifrtpx
+USE_MPI = 1
+FFLAG = -Kfast,parallel,openmp
+LFFLAG = -Kfast,parallel,openmp
+BLAS = -SSL2BLAMP
+LAPACK = 
+USE_MUMPS = 1
+MUMPS_DIR = /opt/aics/mumps/MUMPS_4.10.0/
+MUMPS_DEPEND_LIBS = -L/opt/aics/mumps/MUMPS_4.10.0/ParMetis-3.2.0/ -lparmetis -lmetis
