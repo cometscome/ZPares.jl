@@ -34,4 +34,11 @@ if isfile("zpares_wrapper.so") == false
     #run(`ls`)
     run(`pwd`)
     run(`gfortran -L./ -lzpares zpares_wrapper.f90 -o zpares_wrapper.so -shared -fPIC -llapack -lblas`)
+    insdir = homedir()*"/.julia/packages/ZPares"
+    run(`cp zpares_wrapper.so $insdir/src/`)
+    run(`cp libzpares.a $insdir/src/`)
+    run(`cp zpares.mod $insdir/src/`)
+    run(`cp zpares_wrapper.so $(insdir)/test/`)
+    run(`cp libzpares.a $(insdir)/test/`)
+    run(`cp zpares.mod $(insdir)/test/`)
 end

@@ -36,7 +36,7 @@ module ZPares
 
 
         #initialize_zpares_prm(L,N,M,Lmax)
-        ccall((:initialize_zpares_prm,"./deps/zpares_wrapper.so"),Nothing, 
+        ccall((:initialize_zpares_prm,"zpares_wrapper.so"),Nothing, 
             (
             Ref{Int64}, #L
             Ref{Int64}, #N
@@ -47,7 +47,7 @@ module ZPares
         tasks = zeros(Int32,7)
 
         #subroutine get_ZPARES_TASK(tasks) bind(c,name='get_ZPARES_TASK')
-        ccall((:get_ZPARES_TASK,"./deps/zpares_wrapper.so"),Nothing, 
+        ccall((:get_ZPARES_TASK,"zpares_wrapper.so"),Nothing, 
             (
             Ref{Int32},), #tasks
             tasks)
