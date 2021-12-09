@@ -8,6 +8,7 @@ IterativeSolvers = "42fd0dbc-a981-5370-80f2-aaf504508153"
 LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 LinearMaps = "7a12625a-238d-50fd-b39a-03d52299707e"
 SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
+ZPares_jll = "14754bdb-07d8-520b-81a9-9893a7942c3c"
 
 [compat]
 julia = "1.4"
