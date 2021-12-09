@@ -8,9 +8,8 @@ We can get eigenvalues with a given domain Gamma. Now Gamma is a elipsoidal shap
 ```left``` means the left side and ```right``` means the right side. 
 If you use ```ishermitian = true```, left is the minimum eigenvalue in the domain Gamma and right is the maximum in this. 
 
-I confirmed that this works on MacOS 10.14.6.
 
-Julia 1.4 or higher is needed. 
+Julia 1.6 or higher is needed. 
 
 ```
 z-Pares: Parallel Eigenvalue Solver
