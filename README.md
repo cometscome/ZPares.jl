@@ -1,9 +1,5 @@
 # ZPares
-
-[![Build Status](https://travis-ci.com/cometscome/ZPares.jl.svg?branch=master)](https://travis-ci.com/cometscome/ZPares.jl)
-[![Codecov](https://codecov.io/gh/cometscome/ZPares.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/cometscome/ZPares.jl)
-[![Coveralls](https://coveralls.io/repos/github/cometscome/ZPares.jl/badge.svg?branch=master)](https://coveralls.io/github/cometscome/ZPares.jl?branch=master)
-
+[![CI](https://github.com/cometscome/ZPares.jl/actions/workflows/CI.yml/badge.svg)](https://github.com/cometscome/ZPares.jl/actions/workflows/CI.yml)
 Julia wrapper for [z-Pares](https://zpares.cs.tsukuba.ac.jp).
 
 We can get eigenvalues with a given domain Gamma. Now Gamma is a elipsoidal shape. 
