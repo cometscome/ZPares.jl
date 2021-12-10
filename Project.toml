@@ -11,6 +11,7 @@ SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
 ZPares_jll = "14754bdb-07d8-520b-81a9-9893a7942c3c"
 
 [compat]
+IterativeSolvers = "0.9"
 julia = "1.6"
 
 [extras]
