@@ -12,6 +12,7 @@ ZPares_jll = "14754bdb-07d8-520b-81a9-9893a7942c3c"
 
 [compat]
 LinearMaps = "3"
+IterativeSolvers = "0.9"
 julia = "1.6"
 
 [extras]
